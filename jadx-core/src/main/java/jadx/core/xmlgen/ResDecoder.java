@@ -3,6 +3,7 @@ package jadx.core.xmlgen;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.reandroid.arsc.chunk.TableBlock;
 import jadx.api.ResourceFile;
 import jadx.api.ResourceType;
 import jadx.core.dex.nodes.RootNode;

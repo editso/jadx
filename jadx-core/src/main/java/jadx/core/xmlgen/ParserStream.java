@@ -52,6 +52,27 @@ public class ParserStream {
 		return readInt32() & 0xFFFFFFFFL;
 	}
 
+	public int readInt16Match(int expected, String error) throws IOException{
+		int v = readInt16();
+		if (v != expected) {
+			throwException(error, expected, v);
+		}
+		return v;
+	}
+
+	public byte[] readExtra(long off, long need) throws IOException{
+		long total = getPos() - off;
+		long diff = need - total;
+
+		if (diff <= 0) return new byte[0];
+
+		byte[] bytes = new byte[(int) diff];
+
+		readFully(bytes);
+
+		return bytes;
+	}
+
 	public String readString16Fixed(int len) throws IOException {
 		String str = new String(readInt8Array(len * 2), STRING_CHARSET_UTF16);
 		return str.trim();

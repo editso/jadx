@@ -121,13 +121,17 @@ public class ResTableParser extends CommonBinaryParser implements IResParser {
 
 	private PackageChunk parsePackage() throws IOException {
 		long start = is.getPos();
-		is.checkInt16(RES_TABLE_PACKAGE_TYPE, "Not a table chunk");
+		is.readInt16Match(RES_TABLE_PACKAGE_TYPE, "Not a table chunk");
+
 		int headerSize = is.readInt16();
-		if (headerSize != 0x011c && headerSize != 0x0120) {
-			die("Unexpected package header size");
-		}
+
+//		if (headerSize != 0x011c && headerSize != 0x0120) {
+//			die("Unexpected package header size");
+//		}
+
 		long size = is.readUInt32();
 		long endPos = start + size;
+
 
 		int id = is.readInt32();
 		String name = is.readString16Fixed(128);

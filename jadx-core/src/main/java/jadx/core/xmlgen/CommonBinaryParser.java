@@ -12,9 +12,13 @@ public class CommonBinaryParser extends ParserConstants {
 
 	protected BinaryXMLStrings parseStringPoolNoType() throws IOException {
 		long start = is.getPos() - 2;
-		is.checkInt16(0x001c, "String pool header size not 0x001c");
+
+		int headerSize = is.readInt16Match(0x001c, "String pool header size not 0x001c");
+
 		long size = is.readUInt32();
 		long chunkEnd = start + size;
+
+//		is.readExtra(start, headerSize);
 
 		int stringCount = is.readInt32();
 		int styleCount = is.readInt32();

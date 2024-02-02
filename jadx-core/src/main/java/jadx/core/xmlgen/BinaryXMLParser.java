@@ -8,6 +8,10 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import com.reandroid.apk.ApkModule;
+import com.reandroid.apk.ApkModuleXmlDecoder;
+import com.reandroid.arsc.chunk.xml.ResXmlDocument;
+import jadx.core.utils.android.AndroidManifestParser;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -242,33 +246,43 @@ public class BinaryXMLParser extends CommonBinaryParser {
 		if (is.readInt16() != 0x10) {
 			die("ELEMENT HEADER SIZE is not 0x10");
 		}
+
 		// TODO: Check element chunk size
-		is.readInt32();
+
+		long start = is.getPos() - 4;
+		int chunkSize = is.readInt32();
+
 		int elementBegLineNumber = is.readInt32();
 		int comment = is.readInt32();
 		int startNS = is.readInt32();
 		int startNSName = is.readInt32(); // actually is elementName...
+
 		if (!isLastEnd && !"ERROR".equals(currentTag)) {
 			writer.add('>');
 		}
+
 		isOneLine = true;
 		isLastEnd = false;
 		currentTag = deobfClassName(getString(startNSName));
 		currentTag = getValidTagAttributeName(currentTag);
 		writer.startLine('<').add(currentTag);
 		writer.attachSourceLine(elementBegLineNumber);
+
 		int attributeStart = is.readInt16();
 		if (attributeStart != 0x14) {
 			die("startNS's attributeStart is not 0x14");
 		}
 		int attributeSize = is.readInt16();
-		if (attributeSize != 0x14) {
-			die("startNS's attributeSize is not 0x14");
-		}
+
+//		if (attributeSize != 0x14) {
+//			die("startNS's attributeSize is not 0x14");
+//		}
+
 		int attributeCount = is.readInt16();
 		int idIndex = is.readInt16();
 		int classIndex = is.readInt16();
 		int styleIndex = is.readInt16();
+
 		if ("manifest".equals(currentTag) || writer.getIndent() == 0) {
 			for (Map.Entry<String, String> entry : nsMap.entrySet()) {
 				String nsValue = getValidTagAttributeName(entry.getValue());
@@ -280,10 +294,17 @@ public class BinaryXMLParser extends CommonBinaryParser {
 				writer.add("=\"").add(StringUtils.escapeXML(entry.getKey())).add('"');
 			}
 		}
+
 		boolean attrNewLine = attributeCount != 1 && this.attrNewLine;
+
 		for (int i = 0; i < attributeCount; i++) {
+			long pos = is.getPos();
 			parseAttribute(i, attrNewLine);
+			is.skip(attributeSize - (is.getPos() - pos));
 		}
+
+		is.skip(Math.abs(is.getPos() - (start + chunkSize)));
+
 	}
 
 	private void parseAttribute(int i, boolean newLine) throws IOException {
@@ -417,7 +438,14 @@ public class BinaryXMLParser extends CommonBinaryParser {
 				}
 			}
 		} else {
-			String str = valuesParser.decodeValue(attrValDataType, attrValData);
+			String str = "";
+
+			try{
+				str = valuesParser.decodeValue(attrValDataType, attrValData);
+			}catch (Exception e){
+				LOG.warn("decodeValue(" + attrValDataType + ", " + attrValData + ")", e);
+			}
+
 			memorizePackageName(attrName, str);
 			if (isDeobfCandidateAttr(shortNsName, attrName)) {
 				str = deobfClassName(str);
