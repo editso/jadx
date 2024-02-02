@@ -1,6 +1,7 @@
 package jadx.plugins.input.xapk
 
 import com.google.gson.Gson
+import jadx.api.archive.IZipArchive
 import jadx.api.plugins.utils.ZipSecurity
 import jadx.core.utils.files.FileUtils
 import java.io.File
@@ -11,7 +12,7 @@ object XapkUtils {
 	fun getManifest(file: File): XapkManifest? {
 		if (!FileUtils.isZipFile(file)) return null
 		try {
-			ZipFile(file).use { zip ->
+			IZipArchive.open(file).use { zip ->
 				val manifestEntry = zip.getEntry("manifest.json") ?: return null
 				return InputStreamReader(ZipSecurity.getInputStreamForEntry(zip, manifestEntry)).use {
 					Gson().fromJson(it, XapkManifest::class.java)

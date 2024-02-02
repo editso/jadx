@@ -1,5 +1,7 @@
 package jadx.plugins.input.xapk
 
+import jadx.api.archive.IZipArchive
+import jadx.api.archive.IZipArchiveEntry
 import jadx.api.plugins.input.ICodeLoader
 import jadx.api.plugins.input.JadxCodeInput
 import jadx.api.plugins.utils.CommonFileUtils
@@ -17,7 +19,7 @@ class XapkCustomCodeInput(
 			val manifest = XapkUtils.getManifest(file) ?: continue
 			if (!XapkUtils.isSupported(manifest)) continue
 
-			ZipFile(file).use { zip ->
+			IZipArchive.open(file).use { zip ->
 				for (splitApk in manifest.splitApks) {
 					val splitApkEntry = zip.getEntry(splitApk.file)
 					if (splitApkEntry != null) {

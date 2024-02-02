@@ -8,9 +8,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 
+import jadx.api.archive.IZipArchive;
+import jadx.api.archive.IZipArchiveEntry;
+import jadx.core.xmlgen.ResTableParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +26,6 @@ import jadx.core.utils.exceptions.JadxException;
 import jadx.core.utils.files.FileUtils;
 import jadx.core.xmlgen.ResContainer;
 import jadx.core.xmlgen.ResProtoParser;
-import jadx.core.xmlgen.ResTableParser;
 
 import static jadx.core.utils.files.FileUtils.READ_BUFFER_SIZE;
 import static jadx.core.utils.files.FileUtils.copyStream;
@@ -62,8 +62,8 @@ public final class ResourcesLoader {
 					return decoder.decode(file.length(), inputStream);
 				}
 			} else {
-				try (ZipFile zipFile = new ZipFile(zipRef.getZipFile())) {
-					ZipEntry entry = zipFile.getEntry(zipRef.getEntryName());
+				try (IZipArchive zipFile = IZipArchive.open(zipRef.getZipFile())) {
+					IZipArchiveEntry entry = zipFile.getEntry(zipRef.getEntryName());
 					if (entry == null) {
 						throw new IOException("Zip entry not found: " + zipRef);
 					}
@@ -166,7 +166,7 @@ public final class ResourcesLoader {
 		}
 	}
 
-	public void addEntry(List<ResourceFile> list, File zipFile, ZipEntry entry, String subDir) {
+	public void addEntry(List<ResourceFile> list, File zipFile, IZipArchiveEntry entry, String subDir) {
 		if (entry.isDirectory()) {
 			return;
 		}

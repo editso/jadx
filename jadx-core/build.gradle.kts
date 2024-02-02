@@ -19,6 +19,8 @@ dependencies {
 	testRuntimeOnly(project(":jadx-plugins:jadx-java-input"))
 	testRuntimeOnly(project(":jadx-plugins:jadx-raung-input"))
 
+	implementation("io.github.reandroid:ARSCLib:+")
+
 	testImplementation("org.eclipse.jdt:ecj") {
 		version {
 			prefer("3.33.0")
