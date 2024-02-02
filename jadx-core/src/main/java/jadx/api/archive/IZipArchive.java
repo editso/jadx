@@ -1,8 +1,5 @@
 package jadx.api.archive;
 
-import com.reandroid.archive.ArchiveFile;
-import com.reandroid.archive.InputSource;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,7 +7,10 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
 
-public interface IZipArchive extends AutoCloseable{
+import com.reandroid.archive.ArchiveFile;
+import com.reandroid.archive.InputSource;
+
+public interface IZipArchive extends AutoCloseable {
 
 	Enumeration<? extends IZipArchiveEntry> entries() throws IOException;
 
@@ -18,8 +18,8 @@ public interface IZipArchive extends AutoCloseable{
 
 	InputStream getInputStream(IZipArchiveEntry entry) throws IOException;
 
-	static IZipArchive open(File file) throws IOException{
-		try(ArchiveFile archiveFile = new ArchiveFile(file)) {
+	static IZipArchive open(File file) throws IOException {
+		try (ArchiveFile archiveFile = new ArchiveFile(file)) {
 			return new IZipArchive() {
 				@Override
 				public void close() throws Exception {
@@ -51,7 +51,7 @@ public interface IZipArchive extends AutoCloseable{
 				@Override
 				public InputStream getInputStream(IZipArchiveEntry entry) throws IOException {
 
-					if (entry instanceof ThirdPartyZipEntry){
+					if (entry instanceof ThirdPartyZipEntry) {
 						return ((ThirdPartyZipEntry) entry).openStream();
 					}
 

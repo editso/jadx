@@ -1,14 +1,12 @@
 package jadx.api.archive;
 
-
-
-import com.reandroid.archive.InputSource;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.attribute.FileTime;
 
-public class ThirdPartyZipEntry implements IZipArchiveEntry{
+import com.reandroid.archive.InputSource;
+
+public class ThirdPartyZipEntry implements IZipArchiveEntry {
 
 	InputSource source;
 
@@ -16,10 +14,9 @@ public class ThirdPartyZipEntry implements IZipArchiveEntry{
 		this.source = source;
 	}
 
-	public InputStream openStream() throws IOException{
+	public InputStream openStream() throws IOException {
 		return source.openStream();
 	}
-
 
 	@Override
 	public String getName() {
@@ -30,7 +27,7 @@ public class ThirdPartyZipEntry implements IZipArchiveEntry{
 	public long getSize() {
 		try {
 			return source.getLength();
-		}catch (Exception e){
+		} catch (Exception e) {
 			return -1;
 		}
 	}
@@ -44,7 +41,7 @@ public class ThirdPartyZipEntry implements IZipArchiveEntry{
 	public long getCompressedSize() {
 		try {
 			return source.getLength();
-		}catch (Exception e){
+		} catch (Exception e) {
 			return -1;
 		}
 	}

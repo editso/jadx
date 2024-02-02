@@ -9,13 +9,12 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import jadx.api.archive.IZipArchive;
-import jadx.api.archive.IZipArchiveEntry;
-import jadx.core.xmlgen.ResTableParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import jadx.api.ResourceFile.ZipRef;
+import jadx.api.archive.IZipArchive;
+import jadx.api.archive.IZipArchiveEntry;
 import jadx.api.impl.SimpleCodeInfo;
 import jadx.api.plugins.CustomResourcesLoader;
 import jadx.api.plugins.utils.ZipSecurity;
@@ -26,6 +25,7 @@ import jadx.core.utils.exceptions.JadxException;
 import jadx.core.utils.files.FileUtils;
 import jadx.core.xmlgen.ResContainer;
 import jadx.core.xmlgen.ResProtoParser;
+import jadx.core.xmlgen.ResTableParser;
 
 import static jadx.core.utils.files.FileUtils.READ_BUFFER_SIZE;
 import static jadx.core.utils.files.FileUtils.copyStream;

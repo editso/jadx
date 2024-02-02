@@ -6,7 +6,6 @@ import jadx.api.plugins.utils.ZipSecurity
 import jadx.core.utils.files.FileUtils
 import java.io.File
 import java.io.InputStreamReader
-import java.util.zip.ZipFile
 
 object XapkUtils {
 	fun getManifest(file: File): XapkManifest? {

@@ -7,12 +7,13 @@ import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
-import jadx.api.archive.IZipArchive;
-import jadx.api.archive.IZipArchiveEntry;
+
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import jadx.api.archive.IZipArchive;
+import jadx.api.archive.IZipArchiveEntry;
 import jadx.core.utils.Utils;
 import jadx.core.utils.exceptions.JadxRuntimeException;
 

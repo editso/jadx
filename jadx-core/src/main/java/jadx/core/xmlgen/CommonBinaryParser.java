@@ -18,7 +18,7 @@ public class CommonBinaryParser extends ParserConstants {
 		long size = is.readUInt32();
 		long chunkEnd = start + size;
 
-//		is.readExtra(start, headerSize);
+		// is.readExtra(start, headerSize);
 
 		int stringCount = is.readInt32();
 		int styleCount = is.readInt32();

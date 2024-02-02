@@ -1,14 +1,12 @@
 package jadx.plugins.input.xapk
 
 import jadx.api.archive.IZipArchive
-import jadx.api.archive.IZipArchiveEntry
 import jadx.api.plugins.input.ICodeLoader
 import jadx.api.plugins.input.JadxCodeInput
 import jadx.api.plugins.utils.CommonFileUtils
 import jadx.api.plugins.utils.ZipSecurity
 import java.io.File
 import java.nio.file.Path
-import java.util.zip.ZipFile
 
 class XapkCustomCodeInput(
 	private val plugin: XapkInputPlugin,

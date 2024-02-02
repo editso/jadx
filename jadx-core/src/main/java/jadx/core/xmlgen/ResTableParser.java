@@ -125,13 +125,12 @@ public class ResTableParser extends CommonBinaryParser implements IResParser {
 
 		int headerSize = is.readInt16();
 
-//		if (headerSize != 0x011c && headerSize != 0x0120) {
-//			die("Unexpected package header size");
-//		}
+		// if (headerSize != 0x011c && headerSize != 0x0120) {
+		// die("Unexpected package header size");
+		// }
 
 		long size = is.readUInt32();
 		long endPos = start + size;
-
 
 		int id = is.readInt32();
 		String name = is.readString16Fixed(128);

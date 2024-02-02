@@ -8,10 +8,6 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-import com.reandroid.apk.ApkModule;
-import com.reandroid.apk.ApkModuleXmlDecoder;
-import com.reandroid.arsc.chunk.xml.ResXmlDocument;
-import jadx.core.utils.android.AndroidManifestParser;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -274,9 +270,9 @@ public class BinaryXMLParser extends CommonBinaryParser {
 		}
 		int attributeSize = is.readInt16();
 
-//		if (attributeSize != 0x14) {
-//			die("startNS's attributeSize is not 0x14");
-//		}
+		// if (attributeSize != 0x14) {
+		// die("startNS's attributeSize is not 0x14");
+		// }
 
 		int attributeCount = is.readInt16();
 		int idIndex = is.readInt16();
@@ -440,9 +436,9 @@ public class BinaryXMLParser extends CommonBinaryParser {
 		} else {
 			String str = "";
 
-			try{
+			try {
 				str = valuesParser.decodeValue(attrValDataType, attrValData);
-			}catch (Exception e){
+			} catch (Exception e) {
 				LOG.warn("decodeValue(" + attrValDataType + ", " + attrValData + ")", e);
 			}
 
