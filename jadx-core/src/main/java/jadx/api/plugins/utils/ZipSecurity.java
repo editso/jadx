@@ -151,6 +151,30 @@ public class ZipSecurity {
 		return null;
 	}
 
+	public static void visitZipEntriesWithCond(File file, BiFunction<IZipArchive, IZipArchiveEntry, Boolean> visitor) {
+		try (IZipArchive zip = IZipArchive.open(file)) {
+			Enumeration<? extends IZipArchiveEntry> entries = zip.entries();
+			int entriesProcessed = 0;
+			while (entries.hasMoreElements()) {
+				IZipArchiveEntry entry = entries.nextElement();
+				if (isValidZipEntry(entry)) {
+
+					if (!visitor.apply(zip, entry)) {
+						break;
+					}
+
+					entriesProcessed++;
+					if (!DISABLE_CHECKS && entriesProcessed > MAX_ENTRIES_COUNT) {
+						throw new JadxRuntimeException("Zip entries count limit exceeded: " + MAX_ENTRIES_COUNT
+								+ ", last entry: " + entry.getName());
+					}
+				}
+			}
+		} catch (Exception e) {
+			throw new JadxRuntimeException("Failed to process zip file: " + file.getAbsolutePath(), e);
+		}
+	}
+
 	public static void readZipEntries(File file, BiConsumer<IZipArchiveEntry, InputStream> visitor) {
 		visitZipEntries(file, (zip, entry) -> {
 			if (!entry.isDirectory()) {

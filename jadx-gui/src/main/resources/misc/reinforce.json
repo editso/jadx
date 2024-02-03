@@ -1,0 +1,464 @@
+[
+  {
+	"name": "360加固",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "assets/.appkey",
+	  "assets/libjiagu.so",
+	  "libjiagu_art.so",
+	  "libjiagu_x86.so",
+	  "libprotectClass.so",
+	  "libjgdtc.so",
+	  "libjgdtc_a64.so",
+	  "libjgdtc_art.so",
+	  "libjgdtc_x64.so",
+	  "libjgdtc_x86.so",
+	  "libjiagu_a64.so",
+	  "libjiagu_ls.so",
+	  "libjiagu_x64.so",
+	  "libSafeManageService.so"
+	]
+  },
+  {
+	"name": "APKProtect",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "libAPKProtect.so"
+	]
+  },
+  {
+	"name": "UU安全加固",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "assets/libuusafe.jar.so",
+	  "assets/libuusafe.so",
+	  "lib/armeabi/libuusafeempty.so"
+	]
+  },
+  {
+	"name": "apktoolplus加固",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "assets/jiagu_data.bin",
+	  "assets/sign.bin",
+	  "lib/armeabi/libapktoolplus_jiagu.so"
+	]
+  },
+  {
+	"name": "中国移动加固",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "assets/mogosec_classes",
+	  "assets/mogosec_data",
+	  "assets/mogosec_dexinfo",
+	  "assets/mogosec_march",
+	  "ibmogosecurity.so",
+	  "lib/armeabi/libcmvmp.so",
+	  "lib/armeabi/libmogosec_dex.so",
+	  "lib/armeabi/libmogosec_sodecrypt.so",
+	  "lib/armeabi/libmogosecurity.so"
+	]
+  },
+  {
+	"name": "几维安全",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "assets/dex.dat",
+	  "lib/armeabi/kdpdata.so",
+	  "lib/armeabi/libkdp.so",
+	  "lib/armeabi/libkwscmm.so",
+	  "libkwscr.so",
+	  "libkwslinker.so"
+	]
+  },
+  {
+	"name": "启明星辰",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "libvenSec.so",
+	  "libvenustech.so"
+	]
+  },
+  {
+	"name": "网秦加固",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "libnqshield.so"
+	]
+  },
+  {
+	"name": "娜迦加固",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "libchaosvmp.so",
+	  "libddog.so",
+	  "libfdog.so"
+	]
+  },
+  {
+	"name": "娜迦加固(新版2022)",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "assets/maindata/fake_classes.dex",
+	  "lib/armeabi/libxloader.so",
+	  "lib/armeabi-v7a/libxloader.so",
+	  "lib/arm64-v8a/libxloader.so",
+	  "libxloader.so"
+	]
+  },
+  {
+	"name": "娜迦加固(企业版)",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "libedog.so"
+	]
+  },
+  {
+	"name": "梆梆安全(企业版)",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "libDexHelper-x86.so",
+	  "libDexHelper.so"
+	]
+  },
+  {
+	"name": "梆梆安全(定制版)",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "assets/classes.jar",
+	  "lib/armeabi/DexHelper.so"
+	]
+  },
+  {
+	"name": "梆梆安全(免费版)",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "assets/secData0.jar",
+	  "lib/armeabi/libSecShell-x86.so",
+	  "lib/armeabi/libSecShell.so",
+	  "libSecShell_art.so",
+	  "libSecShell.so",
+	  "libsecexe.so",
+	  "libsecmain.so"
+	]
+  },
+  {
+	"name": "海云安加固",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "assets/itse",
+	  "lib/armeabi/libitsec.so",
+	  "libitsec.so"
+	]
+  },
+  {
+	"name": "爱加密",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "assets/af.bin",
+	  "assets/ijm_lib/X86/libexec.so",
+	  "assets/ijm_lib/armeabi/libexec.so",
+	  "assets/signed.bin",
+	  "ijiami.dat",
+	  "lib/armeabi/libexecmain.so",
+	  "libexecmain.so"
+	]
+  },
+  {
+	"name": "爱加密企业版",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "assets/ijiami.ajm"
+	]
+  },
+  {
+	"name": "爱加密3代壳",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "assets/ijiami3.ajm",
+	  "libexecv3.so"
+	]
+  },
+  {
+	"name": "爱加密5代壳",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "assets/IJMDal.Data",
+	  "assets/libijmDataEncryption.so"
+	]
+  },
+  {
+	"name": "珊瑚灵御",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "assets/libreincp.so",
+	  "assets/libreincp_x86.so"
+	]
+  },
+  {
+	"name": "瑞星加固",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "librsprotect.so"
+	]
+  },
+  {
+	"name": "百度加固",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "libbaiduprotect.so",
+	  "assets/baiduprotect.jar",
+	  "assets/baiduprotect1.jar",
+	  "lib/armeabi/libbaiduprotect.so",
+	  "libbaiduprotect_art.so",
+	  "libbaiduprotect_x86.so"
+	]
+  },
+  {
+	"name": "盛大加固",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "libapssec.so"
+	]
+  },
+  {
+	"name": "网易易盾",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "libnesec.so"
+	]
+  },
+  {
+	"name": "腾讯加固",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "libexec.so",
+	  "libshell.so"
+	]
+  },
+  {
+	"name": "腾讯乐固(旧版)",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "libtup.so",
+	  "lib/armeabi/mix.dex",
+	  "liblegudb.so",
+	  "libshella",
+	  "lib/armeabi/mixz.dex",
+	  "libshel1x",
+	  "lib/armeabi/libshella-xxxx.so",
+	  "lib/armeabi/libshellx-xxxx.so",
+	  "tencent_stub",
+	  "libshella-2.10.2.3.so",
+	  "libshell.so",
+	  "libshella-2.9.0.2",
+	  "libshella-4.1.0.15.so",
+	  "libshella-4.1.0.19.so",
+	  "libshellx.so"
+	]
+  },
+  {
+	"name": "腾讯乐固(VMP)",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "lib/arm64-v8a/libxgVipSecurity.so",
+	  "lib/armeabi-v7a/libxgVipSecurity.so",
+	  "libxgVipSecurity.so"
+	]
+  },
+  {
+	"name": "腾讯云加固",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "assets/libshellx-super.2021.so",
+	  "lib/armeabi/libshell-super.2019.so",
+	  "lib/armeabi/libshell-super.2020.so",
+	  "lib/armeabi/libshell-super.2021.so",
+	  "lib/armeabi/libshell-super.2022.so",
+	  "lib/armeabi/libshell-super.2023.so",
+	  "tencent_sub"
+	]
+  },
+  {
+	"name": "腾讯云移动应用安全",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "0000000lllll.dex",
+	  "00000olllll.dex",
+	  "000O00ll111l.dex",
+	  "00O000ll111l.dex",
+	  "0OO00l111l1l",
+	  "o0oooOO0ooOo.dat"
+	]
+  },
+  {
+	"name": "腾讯云移动应用安全(腾讯御安全)",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "libBugly-yaq.so",
+	  "libshell-super.2019.so",
+	  "libshellx-super.2019.so",
+	  "libzBugly-yaq.so",
+	  "t86",
+	  "tosprotection",
+	  "tosversion",
+	  "000000011111.dex",
+	  "000000111111.dex",
+	  "000001111111",
+	  "00000o11111.dex",
+	  "o0ooo000oo0o.dat"
+	]
+  },
+  {
+	"name": "腾讯御安全",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "libtosprotection.armeabi-v7a.so",
+	  "libtosprotection.armeabi.so",
+	  "libtosprotection.x86.so",
+	  "assets/libtosprotection.armeabi-v7a.so",
+	  "assets/libtosprotection.armeabi.so",
+	  "assets/libtosprotection.x86.so",
+	  "assets/tosversion",
+	  "lib/armeabi/libTmsdk-xxx-mfr.so",
+	  "lib/armeabi/libtest.so"
+	]
+  },
+  {
+	"name": "腾讯Bugly",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "lib/arm64-v8a/libBugly.so",
+	  "libBugly.so"
+	]
+  },
+  {
+	"name": "蛮犀加固",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "assets/mxsafe.config",
+	  "assets/mxsafe.data",
+	  "assets/mxsafe.jar",
+	  "assets/mxsafe/arm64-v8a/libdSafeShell.so",
+	  "assets/mxsafe/x86_64/libdSafeShell.so",
+	  "libdSafeShell.so"
+	]
+  },
+  {
+	"name": "通付盾",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "libNSaferOnly.so",
+	  "libegis.so",
+	  "libgeiri.so",
+	  "libgeiri-x86.so"
+	]
+  },
+  {
+	"name": "阿里加固",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "assets/armeabi/libzuma.so",
+	  "assets/classes.dex.dat",
+	  "assets/dp.arm-v7.so.dat",
+	  "assets/dp.arm.so.dat",
+	  "dexprotect"
+	]
+  },
+  {
+	"name": "阿里云加固",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "libdemolish.so",
+	  "libdemolishdata.so"
+	]
+  },
+  {
+	"name": "阿里聚安全",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "assets/armeabi/libfakejni.so",
+	  "assets/libzumadata.so",
+	  "assets/libpreverify1.so",
+	  "aliprotect.dat",
+	  "libdemolish.so",
+	  "libfakejni.so",
+	  "libmobisec.so",
+	  "libsgmain.so",
+	  "assets/libzuma.so",
+	  "libzumadata.so",
+	  "libdemolishdata.so",
+	  "libpreverify1.so",
+	  "libsgsecuritybody.so"
+	]
+  },
+  {
+	"name": "顶像科技",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "libx3g.so",
+	  "libjni.so",
+	  "lib/armeabi/libx3g.so"
+	]
+  },
+  {
+	"name": "DexProtect加固",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "dp.arm-v7.so.dat",
+	  "dp.arm.so.dat"
+	]
+  },
+  {
+	"name": "CFCA加固",
+	"company": "",
+	"website": "",
+	"traits": [
+	  "libsecenh_a64.so",
+	  "libsecenh_x86.so",
+	  "my_classes.jar",
+	  "libsecenh.so",
+	  "libbasec.so",
+	  "libbasec_x86.so"
+	]
+  }
+]

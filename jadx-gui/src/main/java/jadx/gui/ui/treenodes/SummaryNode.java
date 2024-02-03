@@ -1,13 +1,18 @@
 package jadx.gui.ui.treenodes;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.security.NoSuchAlgorithmException;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import javax.swing.Icon;
@@ -16,9 +21,13 @@ import javax.swing.ImageIcon;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.StringEscapeUtils;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import jadx.api.ICodeInfo;
 import jadx.api.ResourceFile;
 import jadx.api.impl.SimpleCodeInfo;
+import jadx.api.plugins.utils.ZipSecurity;
 import jadx.core.dex.attributes.IAttributeNode;
 import jadx.core.dex.nodes.ClassNode;
 import jadx.core.dex.nodes.MethodNode;
@@ -35,6 +44,14 @@ import jadx.gui.ui.panel.HtmlPanel;
 import jadx.gui.utils.UiUtils;
 
 public class SummaryNode extends JNode {
+
+	public static final class Trait {
+		public String name;
+		public String company;
+		public String website;
+		public List<String> traits;
+	}
+
 	private static final long serialVersionUID = 4295299814582784805L;
 
 	private static final ImageIcon ICON = UiUtils.openSvgIcon("nodes/detailView");
@@ -54,6 +71,7 @@ public class SummaryNode extends JNode {
 			builder.append("<html>");
 			builder.append("<body>");
 			writeInputSummary(builder);
+			writeReinforceSummary(builder);
 			writeDecompilationSummary(builder);
 			builder.append("</body>");
 		} catch (Exception e) {
@@ -65,14 +83,69 @@ public class SummaryNode extends JNode {
 		return new SimpleCodeInfo(builder.toString());
 	}
 
+	public void writeReinforceSummary(StringEscapeUtils.Builder builder) throws IOException {
+		builder.append("<h2>Reinforce</h2>");
+
+		try (InputStream stream =
+				Objects.requireNonNull(SummaryNode.class.getClassLoader().getResource("misc/reinforce.json")).openStream()) {
+			Gson gson = new Gson();
+
+			List<Trait> traits = gson.fromJson(new String(stream.readAllBytes()), new TypeToken<>() {
+			});
+
+			for (File inputFile : wrapper.getArgs().getInputFiles()) {
+				try {
+
+					AtomicReference<Trait> reinforce = new AtomicReference<>();
+
+					ZipSecurity.visitZipEntriesWithCond(inputFile, (iZipArchive, entry) -> {
+						for (Trait trait : traits) {
+							for (String s : trait.traits) {
+								if (entry.getName().endsWith(s)) {
+									reinforce.set(trait);
+									return false;
+								}
+							}
+						}
+						return true;
+					});
+
+					Trait trait = reinforce.get();
+
+					builder.append("<h3>" + inputFile.getName() + "</h3>");
+
+					if (trait != null) {
+						builder.append("<ul>");
+						builder.append("<li> File: " + inputFile.getAbsolutePath() + "</li>");
+						builder.append("<li> Name: " + trait.name + "</li>");
+						builder.append("<li> Company: " + trait.company + "</li>");
+						builder.append("<li> Website: " + trait.website + "</li>");
+						builder.append("</ul>");
+					} else {
+						builder.append("(None)");
+					}
+
+				} catch (Exception ignore) {
+
+				}
+			}
+		}
+
+	}
+
 	private void writeInputSummary(StringEscapeUtils.Builder builder) throws IOException {
 		builder.append("<h2>Input</h2>");
 		builder.append("<h3>Files</h3>");
 		builder.append("<ul>");
 		for (File inputFile : wrapper.getArgs().getInputFiles()) {
 			builder.append("<li>");
+
 			builder.escape(inputFile.getCanonicalFile().getAbsolutePath());
+
+			builder.append(genDigest(new FileInputStream(inputFile)));
+
 			builder.append("</li>");
+
 		}
 		builder.append("</ul>");
 
@@ -108,6 +181,19 @@ public class SummaryNode extends JNode {
 		builder.append("<li>Fields: " + fieldsCount + "</li>");
 		builder.append("<li>Instructions: " + insnCount + " (units)</li>");
 		builder.append("</ul>");
+	}
+
+	private String genDigest(InputStream stream) throws IOException {
+		byte[] bytes = stream.readAllBytes();
+		try {
+			return "<ul>" +
+					"<li> MD5: " + Utils.md5(bytes) + "</li>" +
+					"<li> SHA1: " + Utils.sha1(bytes) + "</li>" +
+					"<li> SHA256: " + Utils.sha256(bytes) + "</li>" +
+					"</ul>";
+		} catch (NoSuchAlgorithmException e) {
+			return "</br> genDigest: </br> " + Utils.getStackTrace(e);
+		}
 	}
 
 	private void addNativeLibsInfo(StringEscapeUtils.Builder builder) {

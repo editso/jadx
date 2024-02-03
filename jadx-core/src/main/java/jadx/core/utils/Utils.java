@@ -3,6 +3,8 @@ package jadx.core.utils;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -502,5 +504,28 @@ public class Utils {
 			return defValue;
 		}
 		return Integer.parseInt(strValue);
+	}
+
+	public static String hexString(byte[] bytes) {
+		StringBuilder sb = new StringBuilder();
+		for (byte b : bytes) {
+			sb.append(Integer.toString((b & 0xff) + 0x100, 16).substring(1));
+		}
+		return sb.toString();
+	}
+
+	public static String sha1(byte[] bytes) throws NoSuchAlgorithmException {
+		MessageDigest sha1 = MessageDigest.getInstance("SHA1");
+		return hexString(sha1.digest(bytes));
+	}
+
+	public static String sha256(byte[] bytes) throws NoSuchAlgorithmException {
+		MessageDigest sha1 = MessageDigest.getInstance("SHA256");
+		return hexString(sha1.digest(bytes));
+	}
+
+	public static String md5(byte[] bytes) throws NoSuchAlgorithmException {
+		MessageDigest sha1 = MessageDigest.getInstance("MD5");
+		return hexString(sha1.digest(bytes));
 	}
 }
