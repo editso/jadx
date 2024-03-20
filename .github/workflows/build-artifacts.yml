@@ -3,6 +3,7 @@ name: Build Artifacts
 on:
   push:
     branches: [ master, build-test ]
+  workflow_dispatch:
 
 jobs:
   build:
